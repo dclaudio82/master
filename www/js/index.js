@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		alert('app caricata');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -47,3 +48,20 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+	function loadXML()
+	{
+		$.get('\\indirizzi.xml')
+	  .done(function(data){
+		// parse the xml
+		data = $.parseXML(data);
+		alret(data);
+		//
+		// do anything you want with the parsed data
+	  })
+	  .fail(function(){
+		alert('something went wrong!');
+	  })
+	;
+	}
+
