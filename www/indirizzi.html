@@ -38,7 +38,7 @@
     -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
-    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/stili.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 	
     <title>WalkingSchool</title>
@@ -48,8 +48,17 @@
     <div>
 		<a href="index.html"><h1>I.C. PONTE SAN PIETRO - homepage</h1></a>
 		<br>
-        <div id="position">
+		<div class='row'>
+		
+        <div id="desc" class='col-xs-3'>
+		Posizione
         </div>
+        <div id="position" class='col-xs-6'>
+        </div>
+        <div id="refresh" class='col-xs-3'>
+			Aggiorna
+        </div>
+		</div>
         <div id="indirizzi">
         </div>
     </div>
@@ -79,6 +88,7 @@ function getLocation()
     }
   else{x.innerHTML="Geolocation is not supported by this browser.";}
   }
+  
 function showPosition(position)
   {
   currLat = position.coords.latitude;
@@ -87,6 +97,7 @@ function showPosition(position)
   "<br />Longitude: " + position.coords.longitude;  
   loadAddress();
   }
+  
 function showError(error)
   {
   switch(error.code) 
@@ -115,29 +126,54 @@ function loadAddress()
 {
 		data = $.parseXML(indirizzi);
 		elenco = data.childNodes[0].getElementsByTagName("indirizzo");
-		//$("#indirizzi").text(data);
 		var htmlElenco = "<div class='table'>";
 		for (i = 0; i < elenco.length; i++) {
-			htmlElenco += "<div class='row'>";
-			htmlElenco += "<div class='col-lg-2'>"+elenco[i].getElementsByTagName("titolo")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-3'>"+elenco[i].getElementsByTagName("descrizione")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-2'>"+elenco[i].getElementsByTagName("image")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-2'>"+elenco[i].getElementsByTagName("map")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-1'>"+elenco[i].getElementsByTagName("lat")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-1'>"+elenco[i].getElementsByTagName("long")[0].textContent+"</div>";
-			distanza = "5km";
+			htmlElenco += "<div class='row' indirizzo='"+i+"'>";
+			htmlElenco += "<div class='col-lg-2' titolo='"+i+"'>"+elenco[i].getElementsByTagName("titolo")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-3' descrizione='"+i+"'>"+elenco[i].getElementsByTagName("descrizione")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-2' image='"+i+"'>"+elenco[i].getElementsByTagName("image")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-2' map='"+i+"'>"+elenco[i].getElementsByTagName("map")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-1' lat='"+i+"'>"+elenco[i].getElementsByTagName("lat")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-1' long='"+i+"'>"+elenco[i].getElementsByTagName("long")[0].textContent+"</div>";
+			distanza = "0km";
 			var Lat1=parseFloat(currLat);
 			var Lat2= parseFloat(elenco[i].getElementsByTagName("lat")[0].textContent); 
 			var Lng1=parseFloat(currLong); 
 			var Lng2=parseFloat(elenco[i].getElementsByTagName("long")[0].textContent);  
 			var distanza=6371 * 3.1415926 * Math.sqrt( (Lat1-Lat2)*(Lat1-Lat2) +Math.cos(Lng1/57.29578)*Math.cos(Lng2/57.29578) *(Lng1-Lng2)*(Lng1-Lng2) )/180 
 			
-			htmlElenco += "<div class='col-lg-1'>"+distanza.toFixed(2)+" km </div>";
+			htmlElenco += "<div class='col-lg-1' distanza='"+i+"'>"+distanza.toFixed(2)+" km </div>";
 			htmlElenco += "</div>";
 		}
 		htmlElenco += "</div>";
 		$("#indirizzi").html(htmlElenco);
+		minimizeAll();
+		
+		$("div[indirizzo]").click(function(){
+		var rigaCliccata = $(this).attr("indirizzo");
+			showAddress(rigaCliccata)
+		});
 }
+function minimizeAll()
+{
+		$("div[descrizione]").hide();
+		$("div[image]").hide();
+		$("div[map]").hide();
+		$("div[lat]").hide();
+		$("div[long]").hide();
+}
+function showAddress(n)
+{
+		minimizeAll();
+		$("div[descrizione="+n+"]").show();
+		$("div[image="+n+"]").show();
+		$("div[map="+n+"]").show();
+		$("div[lat="+n+"]").show();
+		$("div[long="+n+"]").show();
+}
+$("#refresh").click(function(){
+		loadAddress();
+		});
 
 getLocation();
 
