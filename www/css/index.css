@@ -113,3 +113,12 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.btn-primary
+{
+    HEIGHT: 50PX;
+    COLOR: WHITE;
+    WIDTH: 100%;
+    border-color: #337ab7;
+    border-style: solid;
+}
