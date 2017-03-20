@@ -131,8 +131,8 @@ function loadAddress()
 			htmlElenco += "<div class='row row_indirizzo' indirizzo='"+i+"'>";
 			htmlElenco += "<div class='col-lg-2' titolo='"+i+"'>"+elenco[i].getElementsByTagName("titolo")[0].textContent+"</div>";
 			htmlElenco += "<div class='col-lg-3' descrizione='"+i+"'>"+elenco[i].getElementsByTagName("descrizione")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-2' image='"+i+"'>"+elenco[i].getElementsByTagName("image")[0].textContent+"</div>";
-			htmlElenco += "<div class='col-lg-2' map='"+i+"'>"+elenco[i].getElementsByTagName("map")[0].textContent+"</div>";
+			htmlElenco += "<div class='col-lg-2' image='"+i+"'><img src='img/"+elenco[i].getElementsByTagName("image")[0].textContent+"' style='width:304px;height:228px;'></div>";
+			htmlElenco += "<div class='col-lg-2' map='"+i+"'><img src='img/"+elenco[i].getElementsByTagName("map")[0].textContent+"' style='width:304px;height:228px;'></div>";
 			htmlElenco += "<div class='col-lg-1' lat='"+i+"'>"+elenco[i].getElementsByTagName("lat")[0].textContent+"</div>";
 			htmlElenco += "<div class='col-lg-1' long='"+i+"'>"+elenco[i].getElementsByTagName("long")[0].textContent+"</div>";
 			distanza = "0km";
