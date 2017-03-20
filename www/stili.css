@@ -2,3 +2,7 @@ div[descrizione]
 {
 color:#FF0000;
 }
+.row_indirizzo {
+    border-color: #31708f;
+    border-style: solid;
+}
