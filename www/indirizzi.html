@@ -128,7 +128,7 @@ function loadAddress()
 		elenco = data.childNodes[0].getElementsByTagName("indirizzo");
 		var htmlElenco = "<div class='table'>";
 		for (i = 0; i < elenco.length; i++) {
-			htmlElenco += "<div class='row' indirizzo='"+i+"'>";
+			htmlElenco += "<div class='row row_indirizzo' indirizzo='"+i+"'>";
 			htmlElenco += "<div class='col-lg-2' titolo='"+i+"'>"+elenco[i].getElementsByTagName("titolo")[0].textContent+"</div>";
 			htmlElenco += "<div class='col-lg-3' descrizione='"+i+"'>"+elenco[i].getElementsByTagName("descrizione")[0].textContent+"</div>";
 			htmlElenco += "<div class='col-lg-2' image='"+i+"'>"+elenco[i].getElementsByTagName("image")[0].textContent+"</div>";
