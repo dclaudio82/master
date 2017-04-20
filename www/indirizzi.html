@@ -130,12 +130,26 @@ function loadAddress()
 		}
 		var htmlElenco = "<div class='table'>";
 		 
-		for (i = 0; i < matriceDati.length; i++) {
+		for (i = 0; i < 50; i++) {
 			htmlElenco += "<div class='row row_indirizzo' indirizzo='"+i+"'>";
 			htmlElenco += "<div class='col-lg-2' titolo='"+i+"'>via "+matriceDati[i].titolo+"</div>";
 			htmlElenco += "<div class='col-lg-3' descrizione='"+i+"'>"+matriceDati[i].descrizione+"</div>";
-			htmlElenco += "<div class='col-lg-2' image='"+i+"'><img src='img/"+matriceDati[i].image+"' style='width:304px;height:228px;'></div>";
-			htmlElenco += "<div class='col-lg-2' map='"+i+"'><img src='img/"+matriceDati[i].map+"' style='width:304px;height:228px;'></div>";
+			if(matriceDati[i].image!="")
+			{
+				htmlElenco += "<div class='col-lg-2' image='"+i+"'><img src='img/"+matriceDati[i].image+"' style='width:304px;height:228px;'></div>";
+			}
+			else
+			{
+				htmlElenco += "<div class='col-lg-2' image='"+i+"'></div>";
+			}
+			if(matriceDati[i].map!="")
+			{
+				htmlElenco += "<div class='col-lg-2' map='"+i+"'><img src='img/"+matriceDati[i].map+"' style='width:304px;height:228px;'></div>";
+			}
+			else
+			{
+				htmlElenco += "<div class='col-lg-2' map='"+i+"'></div>";
+			}
 			htmlElenco += "<div class='col-lg-1' lat='"+i+"'>Posizione GPS: "+matriceDati[i].lat+"-"+matriceDati[i].long+"</div>";
 			htmlElenco += "<div class='col-lg-1' long='"+i+"'></div>";
 			distanza = "0km";
